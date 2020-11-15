@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500&display=swap');
+@import 'colors';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Red Hat Text', sans-serif;
+    font-weight: 400;
+}
+
+main{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h1{
+        font-weight: 300;
+        color: $purple;
+    }
+    a{
+        color: $pink;
+        text-decoration: none;
+    }
+}
+
+.StripeElement{
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+}

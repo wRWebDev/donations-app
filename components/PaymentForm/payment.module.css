@@ -1,0 +1,70 @@
+.paymentElement {
+  width: 300px;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1rem;
+}
+
+.paymentElement form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 0.5px solid rgba(0, 0, 0, 0.25);
+  padding: 15px;
+  border-radius: 7px;
+  -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.2), 2px 2px 7px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 30px rgba(0, 0, 0, 0.2), 2px 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+.paymentElement form input {
+  width: 100%;
+  border: none;
+  padding: 5px;
+  margin: 5px 0;
+}
+
+.paymentElement form input:focus {
+  outline: none;
+}
+
+.paymentElement form .StripeElement {
+  width: 100%;
+  margin: 5px 5px;
+}
+
+.paymentElement form button {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0;
+  background: #e40385;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.paymentElement form button:focus {
+  outline: none;
+}
