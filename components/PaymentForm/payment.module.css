@@ -100,6 +100,7 @@
 
 .selectAmount:hover {
   color: #e40385 !important;
+  background: #fff !important;
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
