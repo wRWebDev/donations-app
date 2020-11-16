@@ -8,3 +8,8 @@ This is a work-in-progress prototype of an app that will be used for a charity w
 Built with Next.js and React
 
 [See it live on Vercel](https://donations-app-test.vercel.app/)
+
+Use the following card details to test:
+ - Card Number: 4242 4242 4242 4242
+ - Expiry: 2/22
+ - CVC: 222
