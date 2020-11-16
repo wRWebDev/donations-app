@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Router from 'next/router'
 import { CardElement,  useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios'
@@ -16,7 +16,22 @@ export default function PaymentForm() {
   const [checkoutError, setCheckoutError] = useState();
   
   // For Donation Amount
-  const [donation, setDonationTo] = useState(5);
+  const donationAmounts = [5, 10, 20]
+  const [donation, setDonationTo] = useState(5)
+  const [coverFees, setCoverFeesTo] = useState(true)
+  const [total, setTotalTo] = useState(5)
+  useEffect(()=>{tallyTotal()}, [coverFees, donation])
+
+
+  const tallyTotal = () => {
+
+    let newTotal = coverFees 
+      ? (donation * 1014 + 200) / 1000
+      : donation
+
+    setTotalTo(newTotal)
+
+  }
 
   // Handle Payment
   const handleSubmit = async e => {
@@ -77,10 +92,16 @@ export default function PaymentForm() {
     style: {
       base: {
         color: "#E40385",
-        fontSize: "16px"
+        fontSize: "16px",
+        '::placeholder': {
+          color: "#9790a4",
+          fontStyle: "italic"
+        },
+        iconColor: "#9790a4",
       },
       invalid: {
-        color: "#C61A1A"
+        color: "#C61A1A",
+        iconColor: "#C61A1A"
       },
     },
     hidePostalCode: true
@@ -89,7 +110,26 @@ export default function PaymentForm() {
   // Change the donation amount
   const handleRadios = e => {
     setDonationTo(parseInt(e.target.value))
+    tallyTotal()
   }
+
+  // Print donation buttons
+  const donationButtons = donationAmounts.map(price => {
+    return (
+      <DonationButton 
+        donationAmount={price} 
+        currDonation={donation} 
+        onChange={handleRadios} 
+      />
+    )
+  })
+
+
+  // Handler for the fees checkbox
+  const toggleFeeStatus = e => {
+    setCoverFeesTo(!coverFees)
+  }
+
     
   // Show the form
   return (
@@ -98,9 +138,7 @@ export default function PaymentForm() {
         <header>Choose how much to donate</header>
 
         <div className={styles.donationSelectionContainer}>
-          <DonationButton donationAmount="5" currDonation={donation} onChange={handleRadios} />
-          <DonationButton donationAmount="10" currDonation={donation} onChange={handleRadios} />
-          <DonationButton donationAmount="20" currDonation={donation} onChange={handleRadios} />
+          {donationButtons}
         </div>
 
         <input 
@@ -122,12 +160,25 @@ export default function PaymentForm() {
         </input>
 
         <CardElement options={cardOptions}/>
+
+        <label className={styles.smallLabelText}>
+          <input 
+            type="checkbox" 
+            name="feesConsent" 
+            checked={coverFees} 
+            onChange={toggleFeeStatus} 
+          />
+          <span>Help cover our transaction fees,
+          and get your full £{donation} to helping beat cancer!</span>
+        </label>
         
         {checkoutError && <div className="checkoutError">{checkoutError}</div>}
 
         <button 
           type="submit" 
-          disabled={!stripe}>{isProcessing ? 'Processing...' : 'Pay'}
+          disabled={!stripe}
+        >
+            {isProcessing ? 'Processing...' : `Give £${total}`}
         </button>
 
       </form>

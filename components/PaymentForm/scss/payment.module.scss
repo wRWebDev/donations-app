@@ -1,6 +1,7 @@
 $purple: #2e018a;
 $pink: #e40385;
 $black: #000;
+$grey: #9790a4;
 $padding: 5px;
 
 .paymentElement{
@@ -41,6 +42,10 @@ $padding: 5px;
             &:focus{
                 outline: none;
             }
+            &::placeholder{
+                color: $grey;
+                font-style: italic;
+            }
         }
 
         .StripeElement{
@@ -58,6 +63,34 @@ $padding: 5px;
             font-weight: 500;
             &:focus{
                 outline: none;
+            }
+        }
+
+        .smallLabelText{
+            width: 100%;
+            padding: $padding;
+            font-size: 12px;
+            font-style: italic;
+            color: $grey;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+            span{
+                display: inline-block;
+            }
+            input[type="checkbox"]{
+                -webkit-appearance: none;
+                width: 15px;
+                height: 15px;
+                border: 1px solid $purple;
+                border-radius: 3px;
+                &:checked{
+                    background: $purple;
+                }
+                &:hover{
+                    transform: scale(1.05);
+                }
             }
         }
     }
@@ -79,7 +112,6 @@ $padding: 5px;
         0 0 20px rgba(0,0,0,0.1),
         2px 2px 5px rgba(0,0,0,0.2);
     &:hover{
-        color: $pink !important;
         transform: scale(1.05);
     }
 
