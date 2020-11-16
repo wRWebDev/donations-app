@@ -1,6 +1,5 @@
 .paymentElement {
-  width: 300px;
-  height: auto;
+  width: 400px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -32,18 +31,27 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  gap: 1.5rem;
   border: 0.5px solid rgba(0, 0, 0, 0.25);
-  padding: 15px;
+  padding: 30px;
   border-radius: 7px;
   -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.2), 2px 2px 7px rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 30px rgba(0, 0, 0, 0.2), 2px 2px 7px rgba(0, 0, 0, 0.3);
 }
 
+.paymentElement form header {
+  color: #2e018a;
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}
+
 .paymentElement form input {
   width: 100%;
+  color: #e40385;
   border: none;
   padding: 5px;
-  margin: 5px 0;
+  font-size: 16px;
 }
 
 .paymentElement form input:focus {
@@ -52,19 +60,50 @@
 
 .paymentElement form .StripeElement {
   width: 100%;
-  margin: 5px 5px;
 }
 
 .paymentElement form button {
   width: 100%;
-  padding: 5px;
-  margin: 5px 0;
+  padding: calc(2 * 5px);
   background: #e40385;
+  color: #fff;
   border: none;
   border-radius: 3px;
-  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .paymentElement form button:focus {
   outline: none;
+}
+
+.donationSelectionContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+
+.selectAmount {
+  padding: 5px calc(2 * 5px);
+  border: 0.5px solid rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  font-weight: 500;
+  color: #2e018a;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), 2px 2px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.selectAmount:hover {
+  color: #e40385 !important;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.selectAmount input {
+  display: none;
 }

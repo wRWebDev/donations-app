@@ -3,15 +3,22 @@ import Router from 'next/router'
 import { CardElement,  useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios'
 
+import DonationButton from './DonationButton'
+
+import styles from '../../components/PaymentForm/payment.module.css'
+
 export default function PaymentForm() {
-    
+  
+  // For Stripe
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setProcessingTo] = useState(false);
   const [checkoutError, setCheckoutError] = useState();
+  
+  // For Donation Amount
+  const [donation, setDonationTo] = useState(5);
 
-  var selection = 5
-
+  // Handle Payment
   const handleSubmit = async e => {
 
     // Prevent default form action
@@ -41,7 +48,7 @@ export default function PaymentForm() {
     try{
       // Get payment token for 
       const { data: clientSecret } = await axios.post('/api/payment_intent', {
-        amount: selection * 100
+        amount: donation * 100
       })
       
       // Make a payment request
@@ -65,10 +72,12 @@ export default function PaymentForm() {
 
   };
 
+  // Styling of card details input
   const cardOptions = {
     style: {
       base: {
-        color: "#E40385"
+        color: "#E40385",
+        fontSize: "16px"
       },
       invalid: {
         color: "#C61A1A"
@@ -76,36 +85,50 @@ export default function PaymentForm() {
     },
     hidePostalCode: true
   }
+
+  // Change the donation amount
+  const handleRadios = e => {
+    setDonationTo(parseInt(e.target.value))
+  }
     
+  // Show the form
   return (
       <form onSubmit={handleSubmit}>
 
-          <input 
-            type="text" 
-            name="name" 
-            placeholder="Jane Doe">
-          </input>
+        <header>Choose how much to donate</header>
 
-          <input 
-            type="email" 
-            name="email" 
-            placeholder="jane.doe@email.com">
-          </input>
+        <div className={styles.donationSelectionContainer}>
+          <DonationButton donationAmount="5" currDonation={donation} onChange={handleRadios} />
+          <DonationButton donationAmount="10" currDonation={donation} onChange={handleRadios} />
+          <DonationButton donationAmount="20" currDonation={donation} onChange={handleRadios} />
+        </div>
 
-          <input 
-            type="text" 
-            name="postCode" 
-            placeholder="W1U 4BN">
-          </input>
+        <input 
+          type="text" 
+          name="name" 
+          placeholder="Jane Doe">
+        </input>
 
-          <CardElement options={cardOptions}/>
-          
-          {checkoutError && <div className="checkoutError">{checkoutError}</div>}
+        <input 
+          type="email" 
+          name="email" 
+          placeholder="jane.doe@email.com">
+        </input>
 
-          <button 
-            type="submit" 
-            disabled={!stripe}>{isProcessing ? 'Processing...' : 'Pay'}
-          </button>
+        <input 
+          type="text" 
+          name="postCode" 
+          placeholder="W1U 4BN">
+        </input>
+
+        <CardElement options={cardOptions}/>
+        
+        {checkoutError && <div className="checkoutError">{checkoutError}</div>}
+
+        <button 
+          type="submit" 
+          disabled={!stripe}>{isProcessing ? 'Processing...' : 'Pay'}
+        </button>
 
       </form>
   )
