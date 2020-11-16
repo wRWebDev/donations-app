@@ -78,6 +78,12 @@
   font-style: italic;
 }
 
+.paymentElement form input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 50px white inset;
+          box-shadow: 0 0 0 50px white inset;
+  -webkit-text-fill-color: #e40385;
+}
+
 .paymentElement form .StripeElement {
   width: 100%;
 }

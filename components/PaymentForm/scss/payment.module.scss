@@ -46,6 +46,10 @@ $padding: 5px;
                 color: $grey;
                 font-style: italic;
             }
+            &:-webkit-autofill{
+                box-shadow: 0 0 0 50px white inset;
+                -webkit-text-fill-color: $pink;
+            }
         }
 
         .StripeElement{
