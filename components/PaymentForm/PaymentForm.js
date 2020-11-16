@@ -63,7 +63,7 @@ export default function PaymentForm() {
     try{
       // Get payment token for 
       const { data: clientSecret } = await axios.post('/api/payment_intent', {
-        amount: donation * 100
+        amount: total * 100
       })
       
       // Make a payment request
@@ -178,7 +178,11 @@ export default function PaymentForm() {
           type="submit" 
           disabled={!stripe}
         >
-            {isProcessing ? 'Processing...' : `Give £${total}`}
+            {
+              isProcessing 
+                ? 'Processing...' 
+                : `Give ${new Intl.NumberFormat('en-GB', {style: 'currency', currency: 'GBP'}).format(total)}`
+            }
         </button>
 
       </form>
