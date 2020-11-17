@@ -31,12 +31,15 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 1.5rem;
   border: 0.5px solid rgba(0, 0, 0, 0.25);
   padding: 30px;
   border-radius: 7px;
   -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.2), 2px 2px 7px rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 30px rgba(0, 0, 0, 0.2), 2px 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+.paymentElement form * {
+  margin: 0.75rem 0.5rem;
 }
 
 .paymentElement form header {

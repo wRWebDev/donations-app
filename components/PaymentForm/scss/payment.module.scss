@@ -18,14 +18,19 @@ $padding: 5px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 1.5rem;
+        //gap: 1.5rem; -- FIXME: Doesn't work on Safari / iOS
         border: 0.5px solid rgba(0,0,0,0.25);
         padding: 30px;
         border-radius: 7px;
         box-shadow: 
             0 0 30px rgba(0, 0, 0, 0.2), 
             2px 2px 7px rgba(0, 0, 0, 0.3);
-            
+
+        // FIXED - flex gap incompatability issue
+        * {
+            margin: 0.75rem 0.5rem;
+        }
+        
         header{
             color: $purple;
             font-size: 20px;
